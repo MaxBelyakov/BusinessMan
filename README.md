@@ -14,6 +14,11 @@ v.1.2 - 14.11.2021:
 - add new titles;
 - starting points.
 
-v.1.3 (to do):
+v.1.3 - 15.11.2021:
+- add factory object (without unit logic);
+- add truck object (moving between 2 units);
+- truck waiting for loading.
+
+v.1.4 (to do):
 - simple ecomomics logic;
 - level design.
