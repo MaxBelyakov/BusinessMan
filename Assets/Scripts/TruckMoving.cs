@@ -6,8 +6,8 @@ using System;
 
 public class TruckMoving : MonoBehaviour {
 
-    public GameObject Point_A; //Where we request the truck (Sender)
-    public GameObject Point_B; //Where we will send the truck (Reciever)
+    public static GameObject Point_A; //Where we request the truck (Sender)
+    public static GameObject Point_B; //Where we will send the truck (Reciever)
     private Vector3 Point_A_position; //Sender truck point
     private Vector3 Point_B_position; //Reciever truck point
     private Vector3 target; //Which way to move, A or B
@@ -34,16 +34,17 @@ public class TruckMoving : MonoBehaviour {
 	void Update () {
         /* Check to stay on target point */
         if (!Loading && Math.Round(gameObject.transform.position.x, 1) == Math.Round(target.x, 1) && Math.Round(gameObject.transform.position.y, 1) == Math.Round(target.y, 1))
-            StartCoroutine(TruckLoading());
+        {
+            Loading = true;
+            Invoke("TruckLoading", 3f);
+        }
         else
             MovingToTarget();     
     }
 
     /* Truck waiting on target */
-    IEnumerator TruckLoading()
+    void TruckLoading ()
     {
-        Loading = true;
-        yield return new WaitForSeconds(3);
         Loading = false;
         FindTheTarget();
     }

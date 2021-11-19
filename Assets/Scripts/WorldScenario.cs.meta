@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: dd3fb3343b238d84c9b2d3672f0a9fb1
+timeCreated: 1637072714
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - truck1: {fileID: 1181644933071114, guid: 33b3b1476a561be48b8a4d0357194dd8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
