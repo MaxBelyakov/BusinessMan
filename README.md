@@ -19,6 +19,12 @@ v.1.3 - 15.11.2021:
 - add truck object (moving between 2 units);
 - truck waiting for loading.
 
-v.1.4 (to do):
+v.1.4 - 19.11.2021:
+- add World Scenario script to respawn scenario game objects on start;
+- save position and parametrs of game objects when moving between scenes;
+- update waiting function.
+
+v.1.5 (to do):
+- fix loading script before the main scene is loaded (game objects shown before new scene);
 - simple ecomomics logic;
 - level design.
