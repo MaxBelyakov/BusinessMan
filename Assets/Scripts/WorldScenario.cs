@@ -11,7 +11,7 @@ public class WorldScenario : MonoBehaviour {
         {
             scenarioLoaded = true;
             TruckMoving.Point_A = GameObject.Find("office");
-            TruckMoving.Point_B = GameObject.Find("factory");
+            TruckMoving.Point_B = GameObject.Find("lumber");
             GameObject item = Instantiate(truck1, new Vector3(0, 0, 0), Quaternion.identity);
             item.transform.SetParent(gameObject.transform);
             DontDestroyOnLoad(gameObject);
