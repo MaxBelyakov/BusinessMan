@@ -24,7 +24,24 @@ v.1.4 - 19.11.2021:
 - save position and parametrs of game objects when moving between scenes;
 - update waiting function.
 
-v.1.5 (to do):
+v.1.5 - 20.11.2021:
+- add new places for building to the world (wood, rocks, mountain);
+- show text about each place when player enter;
+- start building on target place by sibmit button.
+
+v.1.6 (to do):
+- buildings has a cost;
+- trucks generate income;
+- can add trucks inside office;
+- can add managers in office, one manager operates 3 trucks;
+- managers generate costs;
+- office generate costs;
+- add enemies that blocks the trucks randomly;
+- player have to help trucks to get point B;
+- fix: save created building after moving between scenes;
+- fix: add unic names to created buildings;
+- add building process loading;
+- add panel with money, trucks, managers, costs per month parametrs that will move with player;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
-- simple ecomomics logic;
+- simple economics logic;
 - level design.
