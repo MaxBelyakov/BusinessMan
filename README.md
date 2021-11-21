@@ -29,19 +29,27 @@ v.1.5 - 20.11.2021:
 - show text about each place when player enter;
 - start building on target place by sibmit button.
 
-v.1.6 (to do):
+v.1.6 - 21.11.2021:
+- add police station which respawn police car;
+- police car can wait randomly near the station and search for truck to catch;
+- police car moving to the truck and follow him;
+- add panel with money, trucks, managers, costs per month parametrs;
+- add Economics script to collect simple economic logic there.
+
+v.1.7 (to do):
 - buildings has a cost;
 - trucks generate income;
 - can add trucks inside office;
 - can add managers in office, one manager operates 3 trucks;
 - managers generate costs;
 - office generate costs;
-- add enemies that blocks the trucks randomly;
-- player have to help trucks to get point B;
+- police block the truck;
+- player have to spend money to free the truck by touch police car;
+- fix: clear police station code (a lot of rubbish, no comments);
+- fix: make moving truck and police car script in common function;
 - fix: save created building after moving between scenes;
-- fix: add unic names to created buildings;
+- fix: add unic names to created buildings and objects;
 - add building process loading;
-- add panel with money, trucks, managers, costs per month parametrs that will move with player;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
 - simple economics logic;
 - level design.
