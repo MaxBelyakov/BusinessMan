@@ -36,17 +36,20 @@ v.1.6 - 21.11.2021:
 - add panel with money, trucks, managers, costs per month parametrs;
 - add Economics script to collect simple economic logic there.
 
-v.1.7 (to do):
+v.1.7 - 22.11.2021:
+- police block the truck;
+- fix: clear police station code (a lot of rubbish, no comments);
+- add PoliceCar script that controll police car behavior;
+- fix: make moving truck and police car script in common function;
+
+v.1.8 (to do):
 - buildings has a cost;
 - trucks generate income;
 - can add trucks inside office;
 - can add managers in office, one manager operates 3 trucks;
 - managers generate costs;
 - office generate costs;
-- police block the truck;
 - player have to spend money to free the truck by touch police car;
-- fix: clear police station code (a lot of rubbish, no comments);
-- fix: make moving truck and police car script in common function;
 - fix: save created building after moving between scenes;
 - fix: add unic names to created buildings and objects;
 - add building process loading;
