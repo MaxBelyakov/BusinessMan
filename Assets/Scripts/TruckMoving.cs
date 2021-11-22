@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
-/* Need to use Math.Round function to connect truck and checkpoints */
+/* Use Math.Round function to connect truck and checkpoints */
 
 public class TruckMoving : MonoBehaviour {
 
@@ -13,11 +12,7 @@ public class TruckMoving : MonoBehaviour {
     private Vector3 target; //Which way to move, A or B
 
     private Rigidbody2D rb;
-    private bool FaceRight; //Truck face durection
     private bool Loading = false; //Wait for loading truck
-
-    private float Step_x;
-    private float Step_y;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -39,12 +34,11 @@ public class TruckMoving : MonoBehaviour {
             Invoke("TruckLoading", 3f);
         }
         else
-            MovingToTarget();     
+            WorldScenario.MovingToTarget(target, rb);     
     }
 
     /* Truck waiting on target */
-    void TruckLoading ()
-    {
+    void TruckLoading () {
         Loading = false;
         FindTheTarget();
     }
@@ -55,37 +49,5 @@ public class TruckMoving : MonoBehaviour {
             target = Point_B_position;
         else if (Math.Round(gameObject.transform.position.x, 1) == Math.Round(Point_B_position.x, 1) && Math.Round(gameObject.transform.position.y, 1) == Math.Round(Point_B_position.y, 1))
             target = Point_A_position;
-    }
-
-    /* Moving */
-    void MovingToTarget() {
-        if (Math.Round(gameObject.transform.position.x, 1) < Math.Round(target.x, 1))
-        {
-            Step_x = 1f;
-            FaceRight = true;
-        }
-        else if (Math.Round(gameObject.transform.position.x, 1) > Math.Round(target.x, 1))
-        {
-            Step_x = -1f;
-            FaceRight = false;
-        }
-        else
-            Step_x = 0f;
-
-        if (Math.Round(gameObject.transform.position.y, 1) < Math.Round(target.y, 1))
-            Step_y = 1f;
-        else if (Math.Round(gameObject.transform.position.y, 1) > Math.Round(target.y, 1))
-            Step_y = -1f;
-        else
-            Step_y = 0f;
-
-        //Turn the truck face by moving direction
-        Vector3 FaceTarget = transform.rotation.eulerAngles;
-        if (!FaceRight)
-            transform.rotation = Quaternion.Euler(FaceTarget.x, 180, FaceTarget.z);
-        else
-            transform.rotation = Quaternion.Euler(FaceTarget.x, 0, FaceTarget.z);
-
-        rb.velocity = new Vector2(Step_x, Step_y);
     }
 }
