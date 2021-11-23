@@ -9,7 +9,7 @@ public class FreePlaceEnter : MonoBehaviour {
 
     private void Update() {
         /* Create new building insead free place */
-        if (Input.GetButtonDown("Submit") && build_request)
+        if (Input.GetButtonDown("Fire1") && build_request)
         {
             var new_building = Instantiate(building, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
             new_building.transform.SetParent(GameObject.Find("Buildings").transform);

@@ -6,6 +6,8 @@ public class BuildingEnter : MonoBehaviour {
 
     public static Vector3 exit_building_position;
     public static List<GameObject> world_objects_list;
+    public static List<GameObject> world_buildings_list;
+    public static List<GameObject> world_free_places_list;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,10 +26,30 @@ public class BuildingEnter : MonoBehaviour {
                     world_objects_list.Add(child);
                     child.SetActive(false);
                 }
+
+                /* Create list of active buildings in the game */
+                world_buildings_list = new List<GameObject>();
+                foreach (GameObject child in GameObject.FindGameObjectsWithTag("Buildings"))
+                {
+                    world_buildings_list.Add(child);
+                    child.SetActive(false);
+                }
+
+                /* Create list of active free places in the game */
+                world_free_places_list = new List<GameObject>();
+                foreach (GameObject child in GameObject.FindGameObjectsWithTag("free_place"))
+                {
+                    world_free_places_list.Add(child);
+                    child.SetActive(false);
+                }
             }
-            else if (world_objects_list != null)
+            else
             {
                 foreach (GameObject item in world_objects_list)
+                    item.SetActive(true);
+                foreach (GameObject item in world_buildings_list)
+                    item.SetActive(true);
+                foreach (GameObject item in world_free_places_list)
                     item.SetActive(true);
             }
 
