@@ -42,15 +42,28 @@ v.1.7 - 22.11.2021:
 - add PoliceCar script that controll police car behavior;
 - fix: make moving truck and police car script in common function;
 
-v.1.8 (to do):
+v.1.8 - 23.11.2021:
+- player have to spend money to free the truck by touch police car;
+- fix: save created building after moving between scenes;
+- save created objects after moving between scenes;
+- change sumbut button to "space";
+- player buy free places by giving money action;
+- player can give money to police to free the truck;
+- police return to office and start searching new target;
+- add give money animation;
+- bugfix: police car lose target when player enter the new scene and police is in waiting mode;
+- police car moving to police station as a child object;
+- truck moving to building (that create the truck) as a child object.
+
+v.1.9 (to do):
 - buildings has a cost;
 - trucks generate income;
 - can add trucks inside office;
 - can add managers in office, one manager operates 3 trucks;
 - managers generate costs;
 - office generate costs;
-- player have to spend money to free the truck by touch police car;
-- fix: save created building after moving between scenes;
+- get truck free has a cost; 
+- fix: hide all buildings when moving between scenes;
 - fix: add unic names to created buildings and objects;
 - add building process loading;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
