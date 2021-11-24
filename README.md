@@ -55,15 +55,21 @@ v.1.8 - 23.11.2021:
 - police car moving to police station as a child object;
 - truck moving to building (that create the truck) as a child object.
 
-v.1.9 (to do):
+v.1.9 - 24.11.2021:
+- can add managers in office;
+- new arts for tables and managers;
+- fix: increase money active zone;
+- fix: hide all buildings when moving between scenes;
+- bugfix: just player can enter free place location.
+
+v.2.0 (to do):
 - buildings has a cost;
 - trucks generate income;
 - can add trucks inside office;
-- can add managers in office, one manager operates 3 trucks;
+- one manager operates 3 trucks;
 - managers generate costs;
 - office generate costs;
 - get truck free has a cost; 
-- fix: hide all buildings when moving between scenes;
 - fix: add unic names to created buildings and objects;
 - add building process loading;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
