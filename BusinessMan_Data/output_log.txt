@@ -15,7 +15,7 @@ Platform assembly: C:\Unity\BusinessMan\BusinessMan_Data\Managed\UnityEngine.UI.
 Loading C:\Unity\BusinessMan\BusinessMan_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Unity\BusinessMan\BusinessMan_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Unity\BusinessMan\BusinessMan_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.071 seconds
+- Completed reload, in  0.040 seconds
 Platform assembly: C:\Unity\BusinessMan\BusinessMan_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Unity\BusinessMan\BusinessMan_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
@@ -23,43 +23,7 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 4.397012 ms
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.158425 ms
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 477.
-Total: 0.685690 ms (FindLiveObjects: 0.056445 ms CreateObjectMapping: 0.066067 ms MarkObjects: 0.518276 ms  DeleteObjects: 0.039768 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.244377 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 662.
-Total: 0.788960 ms (FindLiveObjects: 0.081461 ms CreateObjectMapping: 0.065426 ms MarkObjects: 0.577288 ms  DeleteObjects: 0.060935 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.128919 ms
-
-Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 477.
-Total: 0.747267 ms (FindLiveObjects: 0.069916 ms CreateObjectMapping: 0.067350 ms MarkObjects: 0.557403 ms  DeleteObjects: 0.048748 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.939697 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 662.
-Total: 0.797299 ms (FindLiveObjects: 0.082103 ms CreateObjectMapping: 0.066067 ms MarkObjects: 0.591399 ms  DeleteObjects: 0.053238 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.032704 ms
-
-Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 477.
-Total: 0.682483 ms (FindLiveObjects: 0.062218 ms CreateObjectMapping: 0.064784 ms MarkObjects: 0.505447 ms  DeleteObjects: 0.046824 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.885175 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 662.
-Total: 0.887099 ms (FindLiveObjects: 0.098780 ms CreateObjectMapping: 0.066067 ms MarkObjects: 0.653618 ms  DeleteObjects: 0.064784 ms)
-
+UnloadTime: 262.107910 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1ecc -> priority: 1 
-  Thread -> id: 2778 -> priority: 1 
+  Thread -> id: 1518 -> priority: 1 
+  Thread -> id: 151c -> priority: 1 
