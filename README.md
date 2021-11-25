@@ -62,16 +62,26 @@ v.1.9 - 24.11.2021:
 - fix: hide all buildings when moving between scenes;
 - bugfix: just player can enter free place location.
 
-v.2.0 (to do):
-- buildings has a cost;
-- trucks generate income;
-- can add trucks inside office;
+v.2.0 - 25.11.2021:
+- can buy trucks inside office;
+- truck contract show in players status panel;
+- can add truck to world by putting contract inside selected building;
+- add "lumber" building scene;
 - one manager operates 3 trucks;
 - managers generate costs;
 - office generate costs;
-- get truck free has a cost; 
+- add game time (month, day, hour);
+- change startpoint position when return to main scene;
+- simple economics logic (updated Economics script).
+
+v.2.1 (to do):
+- buildings has a cost;
+- trucks generate income;
+- get truck free has a cost;
+- trucks can avoid other trucks;
+- police choose target randomly;
+- update textcontroller (remove debug text from script);
 - fix: add unic names to created buildings and objects;
 - add building process loading;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
-- simple economics logic;
 - level design.
