@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BuildingEnter : MonoBehaviour {
 
     public static Vector3 exit_building_position;
+    public static GameObject enter_building_object;
     public static List<GameObject> world_objects_list;
     public static List<GameObject> world_buildings_list;
     public static List<GameObject> world_free_places_list;
@@ -16,6 +17,9 @@ public class BuildingEnter : MonoBehaviour {
         {
             if (gameObject.name != "main")
             {
+                //Save information about entered building
+                enter_building_object = gameObject;
+
                 /* Save enter location to transfer player position on exit */
                 exit_building_position = gameObject.transform.position;
 

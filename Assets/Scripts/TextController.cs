@@ -29,6 +29,10 @@ public class TextController : MonoBehaviour {
             {
                 displayText.text = "Buy new truck" + "\n" + "Price: 50.000" + "\n" + "Press 'space' to buy";
             }
+            else if (name == "addTruckCell")
+            {
+                displayText.text = "Press 'space' to add truck";
+            }
         }
     }
 }

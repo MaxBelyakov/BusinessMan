@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class StartPoint : MonoBehaviour
 {
-
     private player_controller thePlayer;
     private CameraController theCamera;
 
@@ -24,8 +23,9 @@ public class StartPoint : MonoBehaviour
         }
         else
         {
-            thePlayer.transform.position = new Vector3(BuildingEnter.exit_building_position.x + 1f, BuildingEnter.exit_building_position.y, thePlayer.transform.position.z);
-            theCamera.transform.position = new Vector3(BuildingEnter.exit_building_position.x + 1f, BuildingEnter.exit_building_position.y, theCamera.transform.position.z);
+            var position = BuildingEnter.exit_building_position;
+            thePlayer.transform.position = new Vector3(position.x, position.y - 1f, thePlayer.transform.position.z);
+            theCamera.transform.position = new Vector3(position.x, position.y - 1f, theCamera.transform.position.z);
         }
     }
 }

@@ -1,26 +1,49 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 /* Collect common functions and gamestart scenario */
 
 public class WorldScenario : MonoBehaviour {
 
-    public GameObject truck1;
+    public GameObject truck;
     private static bool scenarioLoaded;
 
     private static float Step_x;
     private static float Step_y;
     private static bool FaceRight; //Car face durection
 
+    public static bool add_truck_to_world = false;
+
     void Start () {
         if (!scenarioLoaded)
         {
             scenarioLoaded = true;
-            TruckMoving.Point_A = GameObject.Find("office");
-            TruckMoving.Point_B = GameObject.Find("lumber");
-            GameObject item = Instantiate(truck1, new Vector3(0, 0, 0), Quaternion.identity);
-            item.transform.SetParent(TruckMoving.Point_B.transform);
-        }       
+
+            /* Add money to buy scenario objects */
+            Economics.AddMoney(120000);
+
+            /* Add first manager to the office */
+            Economics.AddManager();
+
+            /* Add first truck to the world */
+            Economics.BuyTruck();
+            Economics.truck_in_inventory = false;
+            AddTruckFromInventory(GameObject.Find("lumber"));
+
+            DontDestroyOnLoad(gameObject);
+        } else
+            Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        /* Check the player add truck to the world inside the building */
+        if (SceneManager.GetActiveScene().name == "main" && add_truck_to_world)
+        {
+            AddTruckFromInventory(BuildingEnter.enter_building_object);
+            add_truck_to_world = false;
+        }  
     }
 
     /* Transport moving function */
@@ -54,5 +77,14 @@ public class WorldScenario : MonoBehaviour {
             rb.transform.rotation = Quaternion.Euler(FaceTarget.x, 0, FaceTarget.z);
 
         rb.velocity = new Vector2(Step_x, Step_y);
+    }
+
+    /* Add truck from inventory and connect it to A and B points */
+    private void AddTruckFromInventory(GameObject point_B)
+    {
+        GameObject item = Instantiate(truck, new Vector3(0, 0, 0), Quaternion.identity);
+        TruckMoving.Point_A = GameObject.Find("office");
+        TruckMoving.Point_B = point_B;
+        item.transform.SetParent(TruckMoving.Point_B.transform);
     }
 }

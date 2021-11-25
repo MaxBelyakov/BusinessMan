@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FreePlaceEnter : MonoBehaviour {
 
     public GameObject textField; //Connected to Text Prefab
     public GameObject building; //Connected to building Prefab
     public GameObject manager; //Connected to manager Prefab
-    private bool build_request = false;
-    private bool buy_manager_request = false;
-    private bool buy_truck_request = false;
+    public GameObject truck; //Connected to truck Prefab
+    private bool build_request;
+    private bool buy_manager_request;
+    private bool buy_truck_request;
+    private bool add_truck_request;
     private GameObject text;
 
     private void Update() {
@@ -30,6 +33,8 @@ public class FreePlaceEnter : MonoBehaviour {
                 {
                     if (child.transform.childCount == 0)
                     {
+                        if (!Economics.AddManager())
+                            break;
                         var manager_position = new Vector3(child.transform.position.x, child.transform.position.y + 0.3f, child.transform.position.z);
                         var new_manager = Instantiate(manager, manager_position, Quaternion.Euler(Vector3.zero));
                         new_manager.transform.SetParent(child.transform);
@@ -37,13 +42,29 @@ public class FreePlaceEnter : MonoBehaviour {
                     }
                 }
             }
+
+            /* Buy trucks */
+            if (buy_truck_request)
+                Economics.BuyTruck();
+            
+            /* Add truck to building */
+            if (add_truck_request)
+            {
+                if (Economics.truck_in_inventory)
+                {
+                    WorldScenario.add_truck_to_world = true;
+                    Economics.truck_in_inventory = false;
+                } else
+                    Debug.Log("There is no truck contract in your inventory. Buy truck in the office.");
+            }
+
         }
     }
 
     /* Show text */
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.name == "player_0")
-        {
+        {       
             var text_position = new Vector3(collision.transform.position.x + 1.7f, collision.transform.position.y + 0.7f, collision.transform.position.z);
             text = Instantiate(textField, text_position, Quaternion.Euler(Vector3.zero));
 
@@ -54,6 +75,8 @@ public class FreePlaceEnter : MonoBehaviour {
                 buy_manager_request = true;
             else if (gameObject.name == "buyTruckCell")
                 buy_truck_request = true;
+            else if (gameObject.name == "addTruckCell")
+                add_truck_request = true;
             else
                 build_request = true;
         } 
@@ -61,9 +84,12 @@ public class FreePlaceEnter : MonoBehaviour {
 
     /* Hide text */
     private void OnTriggerExit2D(Collider2D collision) {
-        Destroy(text);
-        build_request = false;
-        buy_truck_request = false;
-        buy_manager_request = false;
+        if (collision.name == "player_0")
+        {
+            Destroy(text);
+            build_request = false;
+            buy_truck_request = false;
+            buy_manager_request = false;
+        }
     }
 }
