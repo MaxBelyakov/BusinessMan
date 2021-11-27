@@ -74,14 +74,22 @@ v.2.0 - 25.11.2021:
 - change startpoint position when return to main scene;
 - simple economics logic (updated Economics script).
 
-v.2.1 (to do):
+v.2.1 - 27.11.2021:
 - buildings has a cost;
 - trucks generate income;
 - get truck free has a cost;
+- update textcontroller (remove debug text from script);
+
+v.2.2 (to do):
 - trucks can avoid other trucks;
 - police choose target randomly;
-- update textcontroller (remove debug text from script);
 - fix: add unic names to created buildings and objects;
 - add building process loading;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
+- economic balance;
+- turn on/off police lights;
+- flying numbers (income/costs);
+- show money as x.xxx.xxx;
+- entering to new buildings;
+- gameover scenario;
 - level design.
