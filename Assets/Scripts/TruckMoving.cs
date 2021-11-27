@@ -39,6 +39,8 @@ public class TruckMoving : MonoBehaviour {
 
     /* Truck waiting on target */
     void TruckLoading () {
+        if (target == Point_A_position)
+            Economics.AddMoney(Economics.income_truck);
         Loading = false;
         FindTheTarget();
     }

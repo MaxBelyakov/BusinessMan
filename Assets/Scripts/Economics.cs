@@ -16,6 +16,12 @@ public class Economics : MonoBehaviour {
     private float game_time = 0;
     public float game_speed = 2.8f; //Time change speed
     private static int manager_productivity = 3; //How many trucks can manager control
+    public static int pay_to_police = 500;
+    public static int income_truck = 500000;
+
+    public static int lumber_cost = 100000;
+    public static int mine_cost = 200000;
+    public static int blacksmith_cost = 150000;
 
     public static bool truck_in_inventory = false; //When buy truck it goes to inventory
 
@@ -49,7 +55,7 @@ public class Economics : MonoBehaviour {
     }
 
     /* Add manager. Return true/false */
-    public static bool AddManager() {
+    public static bool AddManager(GameObject text) {
         if ((money - manager_cost_per_month) >= 0)
         {
             money = money - manager_cost_per_month;
@@ -57,24 +63,24 @@ public class Economics : MonoBehaviour {
             return true;
         } else
         {
-            Debug.Log("Not enought money");
+            text.GetComponent<TextController>().SelectText("other", "no_money");
             return false;
         }
     }
 
     /* Buy truck. Return true/false */
-    public static bool BuyTruck()
+    public static bool BuyTruck(GameObject text)
     {
         //Player already buy truck
         if (truck_in_inventory)
         {
-            Debug.Log("There is a truck in your inventory. Select a building to connect it.");
+            text.GetComponent<TextController>().SelectText("other", "truck_in_inventory");
             return false;
         }
         //Not enought managers
         if (trucks >= managers * manager_productivity)
         {
-            Debug.Log("You have no manager to control new truck. Hire new one in office.");
+            text.GetComponent<TextController>().SelectText("other", "no_managers");
             return false;
         }
         //Buy truck
@@ -87,7 +93,7 @@ public class Economics : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Not enought money");
+            text.GetComponent<TextController>().SelectText("other", "no_money");
             return false;
         }
     }
@@ -96,6 +102,18 @@ public class Economics : MonoBehaviour {
     public static void AddMoney(int amount)
     {
         money = money + amount;
+    }
+
+    /* Get money from the game */
+    public static bool GetMoney(int amount, GameObject text)
+    {
+        if (money - amount >= 0) {
+            money = money - amount;
+            return true;
+        } else {
+            text.GetComponent<TextController>().SelectText("other", "no_money");
+            return false;
+        }
     }
 
     void GameOver()

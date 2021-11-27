@@ -67,7 +67,7 @@ public class PoliceCar : MonoBehaviour {
             // Turn on police lights animation
         }
         //Connect with money
-        if (catch_target && collision.name == "money")
+        if (catch_target && collision.name == "money" && Economics.GetMoney(Economics.pay_to_police, null))
         {
             caught_truck.constraints = RigidbodyConstraints2D.None;
             caught_truck.constraints = RigidbodyConstraints2D.FreezeRotation;

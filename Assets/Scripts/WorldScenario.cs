@@ -24,10 +24,10 @@ public class WorldScenario : MonoBehaviour {
             Economics.AddMoney(120000);
 
             /* Add first manager to the office */
-            Economics.AddManager();
+            Economics.AddManager(null);
 
             /* Add first truck to the world */
-            Economics.BuyTruck();
+            Economics.BuyTruck(null);
             Economics.truck_in_inventory = false;
             AddTruckFromInventory(GameObject.Find("lumber"));
 
