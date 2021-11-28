@@ -80,16 +80,21 @@ v.2.1 - 27.11.2021:
 - get truck free has a cost;
 - update textcontroller (remove debug text from script);
 
-v.2.2 (to do):
-- trucks can avoid other trucks;
+v.2.2 - 28.11.2021:
+- remove trucks body, can move without collision;
 - police choose target randomly;
+- police define target by target id;
 - fix: add unic names to created buildings and objects;
+- add money text formatting;
+- entering to all new buildings;
+- truck can be connected to each building;
+- delete old truckmoving model that determ movement by x,y position in the world. New model is object oriented.
+
+v.2.3 (to do):
 - add building process loading;
 - fix loading script before the main scene is loaded (game objects shown before new scene);
 - economic balance;
 - turn on/off police lights;
 - flying numbers (income/costs);
-- show money as x.xxx.xxx;
-- entering to new buildings;
 - gameover scenario;
 - level design.
