@@ -17,11 +17,11 @@ public class Economics : MonoBehaviour {
     public float game_speed = 2.8f; //Time change speed
     private static int manager_productivity = 3; //How many trucks can manager control
     public static int pay_to_police = 500;
-    public static int income_truck = 500000;
+    public static int income_truck = 50000;
 
-    public static int lumber_cost = 100000;
-    public static int mine_cost = 200000;
-    public static int blacksmith_cost = 150000;
+    public static int lumber_cost = 5000;
+    public static int mine_cost = 10000;
+    public static int blacksmith_cost = 7000;
 
     public static bool truck_in_inventory = false; //When buy truck it goes to inventory
 

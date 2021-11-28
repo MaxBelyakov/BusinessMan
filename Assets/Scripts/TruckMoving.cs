@@ -1,55 +1,56 @@
 ﻿using UnityEngine;
-using System;
-
-/* Use Math.Round function to connect truck and checkpoints */
 
 public class TruckMoving : MonoBehaviour {
 
-    public static GameObject Point_A; //Where we request the truck (Sender)
-    public static GameObject Point_B; //Where we will send the truck (Reciever)
-    private Vector3 Point_A_position; //Sender truck point
-    private Vector3 Point_B_position; //Reciever truck point
-    private Vector3 target; //Which way to move, A or B
+    private GameObject Point_A; //Where we request the truck (Sender)
+    private GameObject Point_B; //Where we will send the truck (Reciever)
+    private float Point_B_id; //Get uniq id number of Reciever
+    private GameObject target; //Define which way to go
 
     private Rigidbody2D rb;
     private bool Loading = false; //Wait for loading truck
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+        Point_A = GameObject.Find("office");
+        Point_B = transform.parent.gameObject;
 
-        Point_A_position = new Vector3(Point_A.transform.position.x + 1f, Point_A.transform.position.y, Point_A.transform.position.z);
-        Point_B_position = new Vector3(Point_B.transform.position.x - 1f, Point_B.transform.position.y, Point_B.transform.position.z);
-
-        //Temporary truck creates on Point_A_position, next is to create by events
-        gameObject.transform.position = Point_A_position;
-
-        FindTheTarget();
+        //Creates truck on Point_A position and select target
+        gameObject.transform.position = new Vector2(Point_A.transform.position.x, Point_A.transform.position.y - 1f);
+        target = Point_B;
+        Point_B_id = Point_B.GetInstanceID();
     }
 	
 	void Update () {
-        /* Check to stay on target point */
-        if (!Loading && Math.Round(gameObject.transform.position.x, 1) == Math.Round(target.x, 1) && Math.Round(gameObject.transform.position.y, 1) == Math.Round(target.y, 1))
-        {
+        /* Moving */
+        if (!Loading)
+            WorldScenario.MovingToTarget(target.transform.position, rb);
+        else
+            rb.velocity = new Vector2(0f, 0f);
+    }
+
+    /* Truck loading and change target */
+    void TruckLoading () {
+        target = Point_A;
+        Loading = false;
+    }
+
+    /* Truck unloading and change target */
+    void TruckUnloading () {
+        target = Point_B;
+        Economics.AddMoney(Economics.income_truck);
+        Loading = false;
+    }
+
+    /* Checks which point truck came */
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (target == Point_B && collision.gameObject.GetInstanceID() == Point_B_id) {
             Loading = true;
             Invoke("TruckLoading", 3f);
         }
-        else
-            WorldScenario.MovingToTarget(target, rb);     
-    }
-
-    /* Truck waiting on target */
-    void TruckLoading () {
-        if (target == Point_A_position)
-            Economics.AddMoney(Economics.income_truck);
-        Loading = false;
-        FindTheTarget();
-    }
-
-    /* Which way moving, to A or to B? */
-    void FindTheTarget() {
-        if (Math.Round(gameObject.transform.position.x, 1) == Math.Round(Point_A_position.x, 1) && Math.Round(gameObject.transform.position.y, 1) == Math.Round(Point_A_position.y, 1))
-            target = Point_B_position;
-        else if (Math.Round(gameObject.transform.position.x, 1) == Math.Round(Point_B_position.x, 1) && Math.Round(gameObject.transform.position.y, 1) == Math.Round(Point_B_position.y, 1))
-            target = Point_A_position;
+        if (target == Point_A && collision.name == Point_A.name) {
+            Loading = true;
+            Invoke("TruckUnloading", 3f);
+        }
     }
 }

@@ -40,7 +40,7 @@ public class BuildingEnter : MonoBehaviour {
                 }
 
                 /* Create list of active free places in the game */
-                world_free_places_list = new List<GameObject>();
+                world_free_places_list = new List<GameObject>();                
                 foreach (GameObject child in GameObject.FindGameObjectsWithTag("free_place"))
                 {
                     world_free_places_list.Add(child);

@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 3f7f37d6e54c4de4f9c40da844a6eb79
-timeCreated: 1637412390
+timeCreated: 1638083781
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - textField: {fileID: 1804894405420570, guid: e965358f683067d4aa5ea9b61be89b9b,
+      type: 2}
+  - building: {fileID: 1322727488678002, guid: 6433b53ae731ae84facb3f2904096215, type: 2}
+  - manager: {fileID: 1121848863048258, guid: 8196ca0c1d71d4b48920f98600c9a3e4, type: 2}
+  - truck: {fileID: 1235252665979110, guid: 33b3b1476a561be48b8a4d0357194dd8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

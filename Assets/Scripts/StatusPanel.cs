@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class StatusPanel : MonoBehaviour {
 
@@ -28,8 +29,8 @@ public class StatusPanel : MonoBehaviour {
 
     void Update()
     {
-        moneyText.text = "Money: " + Economics.money;
-        costsText.text = "Costs: " + Economics.costs + " per " + "month";
+        moneyText.text = "Money: " + String.Format("{0:C0}", Economics.money);
+        costsText.text = "Costs: " + String.Format("{0:C0}", Economics.costs) + " per " + "month";
         trucksText.text = "Trucks: " + Economics.trucks;
         managersText.text = "Managers: " + Economics.managers;
 

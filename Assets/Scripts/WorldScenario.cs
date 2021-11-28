@@ -83,8 +83,6 @@ public class WorldScenario : MonoBehaviour {
     private void AddTruckFromInventory(GameObject point_B)
     {
         GameObject item = Instantiate(truck, new Vector3(0, 0, 0), Quaternion.identity);
-        TruckMoving.Point_A = GameObject.Find("office");
-        TruckMoving.Point_B = point_B;
-        item.transform.SetParent(TruckMoving.Point_B.transform);
+        item.transform.SetParent(point_B.transform);
     }
 }

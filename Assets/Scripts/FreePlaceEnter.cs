@@ -34,7 +34,8 @@ public class FreePlaceEnter : MonoBehaviour {
                 var new_building = Instantiate(building, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
                 new_building.transform.SetParent(GameObject.Find("Buildings").transform);
                 new_building.transform.tag = "Buildings";
-                Destroy(gameObject);
+                new_building.name = building.name;
+                Destroy(gameObject);                
             }
             /* Hire manager */
             if (buy_manager_request)

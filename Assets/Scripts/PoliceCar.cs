@@ -32,7 +32,7 @@ public class PoliceCar : MonoBehaviour {
 
     /* Waiting for target */
     void PoliceWaiting() {
-        int waiting_at_office = Random.Range(1, 1);
+        int waiting_at_office = Random.Range(5, 10);
         Invoke("PoliceWorking", waiting_at_office);
     }
 
@@ -46,8 +46,8 @@ public class PoliceCar : MonoBehaviour {
                 if (child.transform.parent.name != "policeStation")
                     world_objects_list_for_police.Add(child);
             }
-
-            Police_point_B = world_objects_list_for_police[0]; //Add there a random choice
+            
+            Police_point_B = world_objects_list_for_police[Random.Range(0, world_objects_list_for_police.Count)];
 
             get_target = true;
         } else
@@ -58,8 +58,8 @@ public class PoliceCar : MonoBehaviour {
 
     /* Catch target by box collider connection */
     private void OnTriggerEnter2D(Collider2D collision) {
-        //Connect with truck
-        if (get_target && !return_to_office && (collision.name == Police_point_B.name))
+        //Connect with truck by ID
+        if (get_target && !return_to_office && (collision.gameObject.GetInstanceID() == Police_point_B.GetInstanceID()))
         {
             caught_truck = collision.GetComponent<Rigidbody2D>();
             caught_truck.constraints = RigidbodyConstraints2D.FreezeAll;
