@@ -46,6 +46,13 @@ public class BuildingEnter : MonoBehaviour {
                     world_free_places_list.Add(child);
                     child.SetActive(false);
                 }
+
+                /* Load building objects */
+                if (BuildingExit.building_objects_list != null && gameObject.name == "office") {
+                    foreach (GameObject item in BuildingExit.building_objects_list)
+                        item.SetActive(true);
+                }
+
             }
             else
             {

@@ -2,9 +2,9 @@
 
 public class Economics : MonoBehaviour {
 
-    private static int manager_cost_per_month = 10000;
+    public static int manager_cost_per_month = 10000;
     private int office_cost_per_month = 50000;
-    private static int truck_cost = 50000;
+    public static int truck_cost = 50000;
 
     public static int money = 0;
     public static int costs = 0;
@@ -24,6 +24,7 @@ public class Economics : MonoBehaviour {
     public static int blacksmith_cost = 7000;
 
     public static bool truck_in_inventory = false; //When buy truck it goes to inventory
+    public GameObject fNumber; //Connected to Floating Numbers canvas
 
     private void Update() {
         //Costs per month calculating
@@ -32,20 +33,24 @@ public class Economics : MonoBehaviour {
         /* Time counter */
         game_time += Time.deltaTime * game_speed;
         time = Mathf.RoundToInt(game_time);
-        if (time >= 24)
-        {
+        if (time >= 24) {
             time = 0;
             game_time = 0;
             day += 1;
-            if (day > 30)
-            {
+            if (day > 30) {
                 day = 1;
                 month += 1;
                 
                 // Costs per month pay
-                if (money - costs >= 0)
-                {
+                if (money - costs >= 0) {
                     money = money - costs;
+
+                    /* Create floating numbers text */
+                    var player = GameObject.Find("player_0");
+                    var f_number_position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z);
+                    Instantiate(fNumber, f_number_position, Quaternion.Euler(Vector3.zero));
+                    FloatingNumbers.SetTextAndColor(costs, Color.red);
+
                 } else
                 {
                     GameOver();
@@ -110,8 +115,9 @@ public class Economics : MonoBehaviour {
         if (money - amount >= 0) {
             money = money - amount;
             return true;
-        } else {
-            text.GetComponent<TextController>().SelectText("other", "no_money");
+        } else { 
+            if (text != null)
+                text.GetComponent<TextController>().SelectText("other", "no_money");
             return false;
         }
     }

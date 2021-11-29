@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TruckMoving : MonoBehaviour {
 
@@ -6,6 +7,7 @@ public class TruckMoving : MonoBehaviour {
     private GameObject Point_B; //Where we will send the truck (Reciever)
     private float Point_B_id; //Get uniq id number of Reciever
     private GameObject target; //Define which way to go
+    public GameObject fNumber; //Connected to Floating Numbers canvas
 
     private Rigidbody2D rb;
     private bool Loading = false; //Wait for loading truck
@@ -39,6 +41,14 @@ public class TruckMoving : MonoBehaviour {
     void TruckUnloading () {
         target = Point_B;
         Economics.AddMoney(Economics.income_truck);
+
+        /* Create floating numbers text */
+        if (SceneManager.GetActiveScene().name == "main") {
+            var f_number_position = new Vector2(rb.position.x, rb.position.y + 0.5f);
+            Instantiate(fNumber, f_number_position, Quaternion.Euler(Vector3.zero));
+            FloatingNumbers.SetTextAndColor(Economics.income_truck, Color.green);
+        }
+
         Loading = false;
     }
 

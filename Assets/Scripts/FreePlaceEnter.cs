@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class FreePlaceEnter : MonoBehaviour {
 
@@ -7,6 +6,9 @@ public class FreePlaceEnter : MonoBehaviour {
     public GameObject building; //Connected to building Prefab
     public GameObject manager; //Connected to manager Prefab
     public GameObject truck; //Connected to truck Prefab
+    public GameObject fNumber; //Connected to Floating Number Prefab
+    public GameObject fTruck; //Connected to Floating Truck Art
+
     private bool build_request;
     private bool buy_manager_request;
     private bool buy_truck_request;
@@ -35,7 +37,11 @@ public class FreePlaceEnter : MonoBehaviour {
                 new_building.transform.SetParent(GameObject.Find("Buildings").transform);
                 new_building.transform.tag = "Buildings";
                 new_building.name = building.name;
-                Destroy(gameObject);                
+                
+                /* Create floating number text */
+                CreateFloatingNumber(building_cost);
+
+                Destroy(gameObject);               
             }
             /* Hire manager */
             if (buy_manager_request)
@@ -50,6 +56,9 @@ public class FreePlaceEnter : MonoBehaviour {
                         var manager_position = new Vector3(child.transform.position.x, child.transform.position.y + 0.3f, child.transform.position.z);
                         var new_manager = Instantiate(manager, manager_position, Quaternion.Euler(Vector3.zero));
                         new_manager.transform.SetParent(child.transform);
+
+                        /* Create floating number text */
+                        CreateFloatingNumber(Economics.manager_cost_per_month);
                         break;
                     }
                 }
@@ -57,7 +66,9 @@ public class FreePlaceEnter : MonoBehaviour {
 
             /* Buy trucks */
             if (buy_truck_request)
-                Economics.BuyTruck(text);
+                if (Economics.BuyTruck(text))
+                    /* Create floating number text */
+                    CreateFloatingNumber(Economics.truck_cost);
             
             /* Add truck to building */
             if (add_truck_request)
@@ -66,6 +77,11 @@ public class FreePlaceEnter : MonoBehaviour {
                 {
                     WorldScenario.add_truck_to_world = true;
                     Economics.truck_in_inventory = false;
+
+                    /* Create floating truck */
+                    var f_truck_position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
+                    Instantiate(fTruck, f_truck_position, Quaternion.Euler(Vector3.zero));
+
                 } else
                     text.GetComponent<TextController>().SelectText("other", "no_truck_contract");
             }
@@ -102,5 +118,14 @@ public class FreePlaceEnter : MonoBehaviour {
             buy_truck_request = false;
             buy_manager_request = false;
         }
+    }
+
+    /* Create floating number position and text */
+    private void CreateFloatingNumber(int number) {
+        var player = GameObject.Find("player_0");
+        var f_number_position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z);
+        var clone = Instantiate(fNumber, f_number_position, Quaternion.Euler(Vector3.zero));
+        clone.transform.SetParent(player.transform);
+        FloatingNumbers.SetTextAndColor(number, Color.red);
     }
 }

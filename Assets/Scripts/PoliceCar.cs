@@ -11,7 +11,8 @@ public class PoliceCar : MonoBehaviour {
     private Rigidbody2D caught_truck;
     private List<GameObject> world_objects_list_for_police;
     private GameObject Police_point_A;
-    private GameObject Police_point_B; //Truck target 
+    private GameObject Police_point_B; //Truck target
+    public GameObject fNumber; //Connected to Floating Numbers canvas
 
     private bool get_target = false;
     private bool catch_target = false;
@@ -67,13 +68,25 @@ public class PoliceCar : MonoBehaviour {
             // Turn on police lights animation
         }
         //Connect with money
-        if (catch_target && collision.name == "money" && Economics.GetMoney(Economics.pay_to_police, null))
-        {
-            caught_truck.constraints = RigidbodyConstraints2D.None;
-            caught_truck.constraints = RigidbodyConstraints2D.FreezeRotation;
-            catch_target = false;
-            ReturnToOffice();
-            // Turn off police lights animation
+        if (catch_target && collision.name == "money") {
+
+            /* Create floating numbers text */
+            var player = GameObject.Find("player_0");
+            var f_number_position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z);
+            Instantiate(fNumber, f_number_position, Quaternion.Euler(Vector3.zero));
+
+            if (Economics.GetMoney(Economics.pay_to_police, null)) {
+                caught_truck.constraints = RigidbodyConstraints2D.None;
+                caught_truck.constraints = RigidbodyConstraints2D.FreezeRotation;
+                catch_target = false;
+
+                FloatingNumbers.SetTextAndColor(Economics.pay_to_police, Color.red);
+
+                ReturnToOffice();
+                // Turn off police lights animation
+            } else
+                //No money
+                FloatingNumbers.SetTextAndColor(Economics.pay_to_police, Color.red, true);
         }
         //Connect with police station
         if (return_to_office && collision.name == "policeStation")
