@@ -90,11 +90,16 @@ v.2.2 - 28.11.2021:
 - truck can be connected to each building;
 - delete old truckmoving model that determ movement by x,y position in the world. New model is object oriented.
 
-v.2.3 (to do):
-- add building process loading;
-- fix loading script before the main scene is loaded (game objects shown before new scene);
-- economic balance;
-- turn on/off police lights;
+v.2.3 - 29.11.2021:
 - flying numbers (income/costs);
+- flying truck (add truck from inventory);
+- fix: save building objects when moving between scenes;
+- fix: police pay in no money case.
+
+v.2.4 (to do):
+- add building process loading;
+- turn on/off police lights;
 - gameover scenario;
+- fix: loading script before the main scene is loaded (game objects shown before new scene);
+- economic balance;
 - level design.
