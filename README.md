@@ -96,10 +96,16 @@ v.2.3 - 29.11.2021:
 - fix: save building objects when moving between scenes;
 - fix: police pay in no money case.
 
-v.2.4 (to do):
+v.2.4 - 01.12.2021:
 - add building process loading;
-- turn on/off police lights;
+- fix: loading process destroy on scene change;
 - gameover scenario;
+- police simple animation;
+
+v.2.5 (to do):
+- turn on/off police lights (renew animation);
+- optimize StatusPanel script;
 - fix: loading script before the main scene is loaded (game objects shown before new scene);
 - economic balance;
+- add simple audio;
 - level design.
