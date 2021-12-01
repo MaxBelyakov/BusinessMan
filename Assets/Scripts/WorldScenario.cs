@@ -84,5 +84,5 @@ public class WorldScenario : MonoBehaviour {
     {
         GameObject item = Instantiate(truck, new Vector3(0, 0, 0), Quaternion.identity);
         item.transform.SetParent(point_B.transform);
-    }
+    }   
 }

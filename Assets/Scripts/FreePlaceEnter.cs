@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class FreePlaceEnter : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class FreePlaceEnter : MonoBehaviour {
     public GameObject truck; //Connected to truck Prefab
     public GameObject fNumber; //Connected to Floating Number Prefab
     public GameObject fTruck; //Connected to Floating Truck Art
+    public GameObject buildingProcess; //Connected to Building Process Canvas Slider
 
     private bool build_request;
     private bool buy_manager_request;
@@ -15,6 +17,9 @@ public class FreePlaceEnter : MonoBehaviour {
     private bool add_truck_request;
     private GameObject text;
     private int building_cost;
+
+    private GameObject loading; //Instanse of loading slider
+    private IEnumerator loading_waiter;  //Instanse of Coroutine
 
     private void Start() {
         /* Get buildings costs from Economics */
@@ -28,29 +33,21 @@ public class FreePlaceEnter : MonoBehaviour {
 
     private void Update() {
         /* Waiting for money request */
-        if (Input.GetButtonDown("Fire1"))
-        {
+        if (Input.GetButtonDown("Fire1")) {
+
             /* Create new building */
-            if (build_request && Economics.GetMoney(building_cost, text))
-            {
-                var new_building = Instantiate(building, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
-                new_building.transform.SetParent(GameObject.Find("Buildings").transform);
-                new_building.transform.tag = "Buildings";
-                new_building.name = building.name;
-                
+            if (build_request && Economics.GetMoney(building_cost, text)) {
                 /* Create floating number text */
                 CreateFloatingNumber(building_cost);
 
-                Destroy(gameObject);               
+                Destroy(text);
+                CreateNewBuilding();               
             }
             /* Hire manager */
-            if (buy_manager_request)
-            {
+            if (buy_manager_request) {
                 /* Searching free tables */
-                foreach (GameObject child in GameObject.FindGameObjectsWithTag("WorkTable"))
-                {
-                    if (child.transform.childCount == 0)
-                    {
+                foreach (GameObject child in GameObject.FindGameObjectsWithTag("WorkTable")) {
+                    if (child.transform.childCount == 0) {
                         if (!Economics.AddManager(text))
                             break;
                         var manager_position = new Vector3(child.transform.position.x, child.transform.position.y + 0.3f, child.transform.position.z);
@@ -86,11 +83,17 @@ public class FreePlaceEnter : MonoBehaviour {
                     text.GetComponent<TextController>().SelectText("other", "no_truck_contract");
             }
         }
+
+        /* Fix: loading process destroy on scene change. 
+        Create a IEnumerator variable that signal about non finished loading and finish it by new coroutine */
+        if (loading_waiter != null && loading == null) {
+                StartCoroutine(loading_waiter);  
+        }
     }
 
     /* Show text */
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.name == "player_0")
+        if (collision.name == "player_0" && loading_waiter == null)
         {       
             var text_position = new Vector3(collision.transform.position.x + 1.7f, collision.transform.position.y + 0.7f, collision.transform.position.z);
             text = Instantiate(textField, text_position, Quaternion.Euler(Vector3.zero));
@@ -118,6 +121,27 @@ public class FreePlaceEnter : MonoBehaviour {
             buy_truck_request = false;
             buy_manager_request = false;
         }
+    }
+
+    void CreateNewBuilding() {
+        //Building process loading
+        loading = Instantiate(buildingProcess, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+        loading.transform.SetParent(gameObject.transform);
+
+        loading_waiter = waiter(loading);
+        StartCoroutine(loading_waiter);
+    }
+
+    IEnumerator waiter(GameObject loading) {
+        yield return new WaitUntil(() => loading == null); //Wait loading process
+        
+        //Create new building
+        var new_building = Instantiate(building, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+        new_building.transform.SetParent(GameObject.Find("Buildings").transform);
+        new_building.transform.tag = "Buildings";
+        new_building.name = building.name;
+
+        Destroy(gameObject);
     }
 
     /* Create floating number position and text */

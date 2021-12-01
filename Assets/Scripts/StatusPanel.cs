@@ -11,11 +11,13 @@ public class StatusPanel : MonoBehaviour {
     public Text daysText;
     private string time_zero;
     public GameObject BuyTruck;
+    public Text gameOverText; //Connected to GameOver Text Prefab
 
     private static bool panelExists;
 
     void Start () {
         BuyTruck.SetActive(false);
+        gameOverText.text = "";
 
         /* Panel transfer between scenes, duplicates will destroy */
         if (!panelExists)
@@ -46,5 +48,14 @@ public class StatusPanel : MonoBehaviour {
             BuyTruck.SetActive(true);
         else
             BuyTruck.SetActive(false);
+
+        if (Economics.game_over) {
+            gameOverText.text = "Game Over";
+            Invoke("ExitGame", 3);
+        }
+    }
+
+    void ExitGame() {
+        Application.Quit();
     }
 }

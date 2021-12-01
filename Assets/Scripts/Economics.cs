@@ -26,6 +26,8 @@ public class Economics : MonoBehaviour {
     public static bool truck_in_inventory = false; //When buy truck it goes to inventory
     public GameObject fNumber; //Connected to Floating Numbers canvas
 
+    public static bool game_over = false; //GameOver
+
     private void Update() {
         //Costs per month calculating
         costs = managers * manager_cost_per_month + office_cost_per_month;
@@ -52,9 +54,7 @@ public class Economics : MonoBehaviour {
                     FloatingNumbers.SetTextAndColor(costs, Color.red);
 
                 } else
-                {
-                    GameOver();
-                }
+                    game_over = true;
             }
         }
     }
@@ -120,10 +120,5 @@ public class Economics : MonoBehaviour {
                 text.GetComponent<TextController>().SelectText("other", "no_money");
             return false;
         }
-    }
-
-    void GameOver()
-    {
-        Debug.Log("GameOver");
     }
 }
