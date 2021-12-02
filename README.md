@@ -102,12 +102,12 @@ v.2.4 - 01.12.2021:
 - gameover scenario;
 - police simple animation;
 
-v.2.5 - 02.12.2021:
+v.2.5 & v.2.6 - 02.12.2021:
 - turn on/off police lights (renew animation);
 - add audio (money, police, building);
 - fix: start building again at the same free place.
 
-v.2.6 (to do):
+v.2.7 (to do):
 - fix: loading script before the main scene is loaded (game objects shown before new scene);
 - economic balance;
 - level design.
