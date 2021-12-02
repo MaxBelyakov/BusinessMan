@@ -9,6 +9,9 @@ public class PoliceCar : MonoBehaviour {
 
     private Rigidbody2D rb;
     private Rigidbody2D caught_truck;
+    private Animator anim;
+    private SFXManager sound_police;
+
     private List<GameObject> world_objects_list_for_police;
     private GameObject Police_point_A;
     private GameObject Police_point_B; //Truck target
@@ -20,6 +23,9 @@ public class PoliceCar : MonoBehaviour {
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sound_police = FindObjectOfType<SFXManager>();
+
         Police_point_A = transform.parent.gameObject;
 
         PoliceWaiting();
@@ -29,6 +35,9 @@ public class PoliceCar : MonoBehaviour {
     private void Update() {
         if (get_target)
             WorldScenario.MovingToTarget(Police_point_B.transform.position, rb);
+        
+        // Turn on/off police lights animation
+        anim.SetBool("CatchTruck", catch_target);
     }
 
     /* Waiting for target */
@@ -65,7 +74,8 @@ public class PoliceCar : MonoBehaviour {
             caught_truck = collision.GetComponent<Rigidbody2D>();
             caught_truck.constraints = RigidbodyConstraints2D.FreezeAll;
             catch_target = true;
-            // Turn on police lights animation
+
+            sound_police.police_siren.Play();
         }
         //Connect with money
         if (catch_target && collision.name == "money") {
@@ -79,11 +89,11 @@ public class PoliceCar : MonoBehaviour {
                 caught_truck.constraints = RigidbodyConstraints2D.None;
                 caught_truck.constraints = RigidbodyConstraints2D.FreezeRotation;
                 catch_target = false;
+                sound_police.money_coin.Play();
 
                 FloatingNumbers.SetTextAndColor(Economics.pay_to_police, Color.red);
 
                 ReturnToOffice();
-                // Turn off police lights animation
             } else
                 //No money
                 FloatingNumbers.SetTextAndColor(Economics.pay_to_police, Color.red, true);

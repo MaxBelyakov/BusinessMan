@@ -21,7 +21,11 @@ public class FreePlaceEnter : MonoBehaviour {
     private GameObject loading; //Instanse of loading slider
     private IEnumerator loading_waiter;  //Instanse of Coroutine
 
+    private SFXManager sound;
+
     private void Start() {
+        sound = FindObjectOfType<SFXManager>();
+
         /* Get buildings costs from Economics */
         if (building.name == "lumber")
             building_cost = Economics.lumber_cost;
@@ -36,7 +40,7 @@ public class FreePlaceEnter : MonoBehaviour {
         if (Input.GetButtonDown("Fire1")) {
 
             /* Create new building */
-            if (build_request && Economics.GetMoney(building_cost, text)) {
+            if (build_request && loading == null && Economics.GetMoney(building_cost, text)) {
                 /* Create floating number text */
                 CreateFloatingNumber(building_cost);
 
@@ -78,6 +82,7 @@ public class FreePlaceEnter : MonoBehaviour {
                     /* Create floating truck */
                     var f_truck_position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
                     Instantiate(fTruck, f_truck_position, Quaternion.Euler(Vector3.zero));
+                    sound.put_effect.Play();
 
                 } else
                     text.GetComponent<TextController>().SelectText("other", "no_truck_contract");
@@ -128,6 +133,8 @@ public class FreePlaceEnter : MonoBehaviour {
         loading = Instantiate(buildingProcess, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
         loading.transform.SetParent(gameObject.transform);
 
+        sound.building_process.Play();
+
         loading_waiter = waiter(loading);
         StartCoroutine(loading_waiter);
     }
@@ -151,5 +158,6 @@ public class FreePlaceEnter : MonoBehaviour {
         var clone = Instantiate(fNumber, f_number_position, Quaternion.Euler(Vector3.zero));
         clone.transform.SetParent(player.transform);
         FloatingNumbers.SetTextAndColor(number, Color.red);
+        sound.money_coin.Play();
     }
 }
