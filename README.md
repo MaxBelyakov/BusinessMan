@@ -107,7 +107,7 @@ v.2.5 & v.2.6 - 02.12.2021:
 - add audio (money, police, building);
 - fix: start building again at the same free place.
 
-v.2.7 (to do):
-- fix: loading script before the main scene is loaded (game objects shown before new scene);
+v.2.7 - 04.12.2021:
+- enter building by press enter;
 - economic balance;
 - level design.
