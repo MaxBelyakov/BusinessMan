@@ -4,7 +4,7 @@ public class Economics : MonoBehaviour {
 
     public static int manager_cost_per_month = 10000;
     private int office_cost_per_month = 50000;
-    public static int truck_cost = 50000;
+    public static int truck_cost = 5000;
 
     public static int money = 0;
     public static int costs = 0;
@@ -17,7 +17,7 @@ public class Economics : MonoBehaviour {
     public float game_speed = 2.8f; //Time change speed
     private static int manager_productivity = 3; //How many trucks can manager control
     public static int pay_to_police = 500;
-    public static int income_truck = 50000;
+    public static int income_truck = 1000;
 
     public static int lumber_cost = 5000;
     public static int mine_cost = 10000;

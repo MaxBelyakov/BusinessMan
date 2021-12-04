@@ -21,7 +21,7 @@ public class WorldScenario : MonoBehaviour {
             scenarioLoaded = true;
 
             /* Add money to buy scenario objects */
-            Economics.AddMoney(120000);
+            Economics.AddMoney(20000);
 
             /* Add first manager to the office */
             Economics.AddManager(null);
